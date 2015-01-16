@@ -30,6 +30,12 @@ public class Biblioteca {
         return Arrays.asList(new Book("Moneyball: The Art Of Winning An Unfair Game", "Michael Lewis", 2003), new Book("All Light we cannot see", "Anthony Doerr", 2014), new Book("Java head first", "Bert Bates, Kathy Sierra", 2004));
     }
 
+    public static void justDummy(){
+
+    }
+
+
+
 
 
 

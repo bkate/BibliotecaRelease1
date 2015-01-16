@@ -22,6 +22,8 @@ public class BibUI extends JFrame {
         // Generated using JFormDesigner Evaluation license - Kaoutare Bedda
         dialogPane = new JPanel();
         contentPanel = new JPanel();
+        BookList1 = new JScrollPane();
+        BookList = new JList();
         buttonBar = new JPanel();
         okButton = new JButton();
         cancelButton = new JButton();
@@ -46,6 +48,16 @@ public class BibUI extends JFrame {
             //======== contentPanel ========
             {
                 contentPanel.setLayout(new GridLayoutManager(3, 2, new Insets(0, 0, 0, 0), -1, -1));
+
+                //======== BookList1 ========
+                {
+                    BookList1.setViewportView(BookList);
+                }
+                contentPanel.add(BookList1, new GridConstraints(1, 0, 1, 1,
+                    GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE,
+                    GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
+                    GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
+                    null, null, null));
             }
             dialogPane.add(contentPanel, BorderLayout.CENTER);
 
@@ -80,6 +92,8 @@ public class BibUI extends JFrame {
     // Generated using JFormDesigner Evaluation license - Kaoutare Bedda
     private JPanel dialogPane;
     private JPanel contentPanel;
+    private JScrollPane BookList1;
+    private JList BookList;
     private JPanel buttonBar;
     private JButton okButton;
     private JButton cancelButton;

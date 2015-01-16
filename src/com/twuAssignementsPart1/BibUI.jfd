@@ -13,6 +13,14 @@ new FormModel {
 					"$rowCount": 3
 				} ) {
 					name: "contentPanel"
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "BookList1"
+						add( new FormComponent( "javax.swing.JList" ) {
+							name: "BookList"
+						} )
+					}, new FormLayoutConstraints( class com.intellij.uiDesigner.core.GridConstraints ) {
+						"row": 1
+					} )
 				}, new FormLayoutConstraints( class java.lang.String ) {
 					"value": "Center"
 				} )
