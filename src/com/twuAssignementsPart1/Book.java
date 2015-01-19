@@ -8,7 +8,12 @@ public class Book {
     private int publishedYear;
 
 
-    public Book(String _title, String _author, int _publishedYear){
+
+    private int bookID;
+
+
+    public Book(int _bookID, String _title, String _author, int _publishedYear){
+        setBookID(_bookID);
         setTitle(_title);
         setAuthor(_author);
        setPublishedYear(_publishedYear);
@@ -26,15 +31,17 @@ public class Book {
         this.publishedYear = publishedYear;
     }
 
+    public void setBookID(int bookID) {this.bookID = bookID;}
+
     public int getPublishedYear() {
         return publishedYear;
     }
 
-    public String getTitle() {
-        return title;
-    }
+    public String getTitle() {return title;}
 
-    public String getAuthor() {
-        return author;
-    }
+    public String getAuthor() {return author;}
+
+    public int getBookID() {return bookID; }
+
+
 }

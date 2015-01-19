@@ -11,31 +11,45 @@ public class BibliotecaTest {
 
     @Test
     public final  void welcomeMessageTesting(){
-
         String data = "John";
         InputStream stdin = System.in;
 
         try {
             System.setIn(new ByteArrayInputStream(data.getBytes()));
-            /*Scanner scanner = new Scanner(System.in);
-            String name = scanner.nextLine();*/
-
             Biblioteca.welcomeMessage();
         }finally {
             System.setIn(stdin);
         }
-
     }
 
     @Test
-    public final void testingIfTheListIsEmpty()
-    {
-       // List<String> list = Arrays.asList("The Art Of Winning An Unfair Game", "All Light we cannot see", "Java head first");
-       // String listToString = Biblioteca.bookListing().toString();
-       // Assert.assertTrue(listToString.contains("[The Art Of Winning An Unfair Game, All Light we cannot see, Java head first]"));   // passes
+    public final void testingIfTheListIsEmpty() {Assert.assertTrue(!Biblioteca.bookListing().isEmpty());}
 
-        Assert.assertTrue(!Biblioteca.bookListing().isEmpty());
+    @Test
+    public final void testingChosenBooksID(){
+
+        Integer chosenBooksID = 1;
+        InputStream stdin = System.in;
+
+        try {
+            System.setIn(new ByteArrayInputStream(chosenBooksID.toString().getBytes()));
+            Biblioteca.bookListing();
+        }finally {
+            System.setIn(stdin);
+        }
+
+
+      //  Assert.assertTrue(Biblioteca.getChosenBookID() > 0);
+
     }
+
+   // @Test
+  /*  public final void testDummy(){
+        Biblioteca.printChosenBooksDetails();
+        Assert.assertTrue(Biblioteca.getChosenBookID() > 0);
+    }*/
+
+
 
 
 }
