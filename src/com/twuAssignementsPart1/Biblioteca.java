@@ -38,17 +38,19 @@ public class Biblioteca {
     }
 
 
-    public static void printChosenBooksDetails() {
+    public static Book printChosenBooksDetails() {
         Scanner scannChosenBookID = new Scanner(System.in);
         chosenBookID = scannChosenBookID.nextInt();
         if(chosenBookID <= 0 || chosenBookID > Biblioteca.bookListing().size()){
             System.err.println("Please enter a valid number!\n");
             printChosenBooksDetails();
-        return;
+        return null;
         }
 
         System.out.println("Author : " + Biblioteca.bookListing().get(chosenBookID -1).getAuthor() +
                 "\nPublished : "+ Biblioteca.bookListing().get(chosenBookID -1).getPublishedYear() );
+
+        return Biblioteca.bookListing().get(chosenBookID-1);
     }
 
     public static void mainMenu(){
@@ -74,6 +76,7 @@ public class Biblioteca {
                 System.out.println("\nThe Biblioteca has following books, for more details please choose a book's ID");
                 Biblioteca.printBooksTitleOnTheLibrary();
                 Biblioteca.printChosenBooksDetails();
+                Biblioteca.checkOutBook();
                 break;
             case 2:
                 System.out.println("Nothing to do");
@@ -93,6 +96,31 @@ public class Biblioteca {
                 Biblioteca.printChosenBooksDetails();
         }
     }
+
+    public static void checkOutBook(){
+
+        System.out.println("For check out please enter : 1\n" +
+                            "Return to library please enter : 0 ");
+
+        Scanner scannClientSelection = new Scanner(System.in);
+        int clientSelection = scannClientSelection.nextInt();
+
+        switch (clientSelection){
+            case 1 :
+                Biblioteca.printChosenBooksDetails().setCheckedOut(true);
+                System.out.println(Biblioteca.printChosenBooksDetails().isCheckedOut());
+                Biblioteca.mainMenu();
+
+                break;
+            case 0 :
+                Biblioteca.printBooksTitleOnTheLibrary();
+                break;
+            default:
+        }
+
+    }
+
+
 
 
     //Getter and Setter
