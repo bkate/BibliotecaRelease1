@@ -10,33 +10,32 @@ public class Biblioteca {
 
     //Attributes
     private static  int chosenBookID;
-    List<Book> nonCheckedOutBooks = new ArrayList<Book>();
-   // static Scanner scanner = new Scanner(System.in);
+    static List<Book> nonCheckedOutBooks = new ArrayList<Book>();
+    static List<Book> checkedBooks = new ArrayList<Book>();
+
 
     //Methods
     public static String welcomeMessage(String userName) {
-
-      // String userName =  scanner.nextLine();
-
-      // System.out.println("Hello " + userName + "!" + " Welcome on Biblioteca !");
-
         return "Hello " + userName + "!" + " Welcome on Biblioteca.";
     }
 
 
 
     public static List<Book> initializeLibrary(){
-        return Arrays.asList(new Book(1, " Moneyball: The Art Of Winning An Unfair Game", "Michael Lewis", 2003, false),
-                new Book(2, " All Light we cannot see", "Anthony Doerr", 2014, true),
-                new Book(3, " Java head first", "Bert Bates, Kathy Sierra", 2004, false));
-       // for (Book book : )
+
+        nonCheckedOutBooks.add(new Book(1, " Moneyball: The Art Of Winning An Unfair Game", "Michael Lewis", 2003, false));
+        nonCheckedOutBooks.add(new Book(2, " All Light we cannot see", "Anthony Doerr", 2014, false));
+        nonCheckedOutBooks.add(new Book(3, " Java head first", "Bert Bates, Kathy Sierra", 2004, false));
+
+
+        return nonCheckedOutBooks;
     }
 
     public static void printBooksTitleOnTheLibrary() {
-        for (Book book : Biblioteca.initializeLibrary()) {
-            if(!book.isCheckedOut()){
+        for (Book book : nonCheckedOutBooks) {
+          //  if(!book.isCheckedOut()){
                 System.out.println(book.getBookID() + ": " + book.getTitle());
-            }
+           // }
         }
     }
 
@@ -44,7 +43,7 @@ public class Biblioteca {
     public static Book printChosenBooksDetails() {
         Scanner scannChosenBookID = new Scanner(System.in);
         chosenBookID = scannChosenBookID.nextInt();
-        if(chosenBookID <= 0 || chosenBookID > Biblioteca.initializeLibrary().size()){
+        if(chosenBookID <= 0 || chosenBookID > nonCheckedOutBooks.size()){
             System.err.println("Please enter a valid number!\n");
             printChosenBooksDetails();
         return null;
@@ -53,7 +52,7 @@ public class Biblioteca {
        /* System.out.println("Author : " + Biblioteca.initializeLibrary().get(chosenBookID -1).getAuthor() +
                 "\nPublished : "+ Biblioteca.initializeLibrary().get(chosenBookID -1).getPublishedYear());
 */
-        return Biblioteca.initializeLibrary().get(chosenBookID-1);
+        return nonCheckedOutBooks.get(chosenBookID-1);
     }
 
     public static int mainMenu() {
@@ -72,61 +71,19 @@ public class Biblioteca {
     }
 
 
-       /* switch (menuItem){
-            case 1:
-                System.out.println("\nThe Biblioteca has following books, for more details please choose a book's ID");
-                Biblioteca.printBooksTitleOnTheLibrary();
-                Biblioteca.printChosenBooksDetails();
-                Biblioteca.checkOutBook();
-                break;
-            case 2:
-                System.out.println("Nothing to do");
-                break;
-            case 3:
-                System.out.println("Nothing to do");
-                break;
-            case 4:
-                System.out.println("Nothing to do");
-                break;
-            case 5:
-                System.out.println("Nothing to do");
-                break;
-            default:
-                System.out.println("\nThe Biblioteca has following books, for more details please choose a book's ID");
-                Biblioteca.printBooksTitleOnTheLibrary();
-                Biblioteca.printChosenBooksDetails();
-        }*/
 
 
-    public static int checkOutBook(){
+    public static void checkOutBook(Book checkedBook){
+       boolean possibleToCheck =  nonCheckedOutBooks.remove(checkedBook);
+        if(possibleToCheck) {
+            checkedBooks.add(checkedBook);
+            System.out.println(checkedBook.getTitle() + " is successfully checked out");
+        }else System.out.println(checkedBook.getTitle()+ ": check out is unsuccessful");
 
-      /*  System.out.println("\nFor check out please enter : 1\n" +
-                            "Return to library please enter : 0 ");
-*/
-        Scanner scannClientSelection = new Scanner(System.in);
-      //  int clientSelection = scannClientSelection.nextInt();
-
-        return scannClientSelection.nextInt();
-      /*  switch (clientSelection){
-            case 1 :
-                Biblioteca.printChosenBooksDetails().setCheckedOut(true);
-                System.out.println(Biblioteca.printChosenBooksDetails().isCheckedOut());
-                Biblioteca.mainMenu();
-
-                break;
-            case 0 :
-                Biblioteca.printBooksTitleOnTheLibrary();
-                break;
-            default:
-        }
-*/
     }
 
 
 
 
-    //Getter and Setter
-  /*  public static int getChosenBookID() {
-        return chosenBookID;
-    }*/
+
 }
